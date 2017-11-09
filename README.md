@@ -1,4 +1,6 @@
-# Ng4CompleteGuide
+# Food Ordering App
+
+Live [demo](https://food-ordering-de7cf.firebaseapp.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.
 
