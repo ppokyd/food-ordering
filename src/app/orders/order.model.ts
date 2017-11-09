@@ -4,7 +4,7 @@ export class Order {
 
   constructor(
     public items: OrderItem[],
-    public date: Date,
+    public date: number,
     public delivery: string,
     public sum: number,
     public place: string

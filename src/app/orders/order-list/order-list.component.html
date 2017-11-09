@@ -19,7 +19,7 @@
 <hr>
 <div class="row">
   <div class="col-12">
-    <app-order-item *ngFor="let order of orders; let i = index;"
+    <app-order-item *ngFor="let order of orders| async; let i = index;"
                     [ngStyle]="{opacity: i ? .7 : 1}"
                     [order]="order"></app-order-item>
   </div>

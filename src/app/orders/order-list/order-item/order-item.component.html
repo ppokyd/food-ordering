@@ -1,9 +1,16 @@
 <div class="card">
   <div class="card-header">
     <div class="row">
-      <div class="col-sm"><b>Delivery:</b> {{ order.delivery}}</div>
-      <div class="col-sm"><b>Date:</b> {{ order.date | date }}</div>
-      <div class="col-sm"><b>Place:</b> {{ order.place }}</div>
+      <div class="col-sm-11">
+        <div class="row">
+          <div class="col-sm"><b>Delivery:</b> {{ order.delivery}}</div>
+          <div class="col-sm"><b>Date:</b> {{ order.date | date }}</div>
+          <div class="col-sm"><b>Place:</b> {{ order.place }}</div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <i class="material-icons" (click)="editOrder(order)">edit</i>
+      </div>
       <!--<div class="col-sm"><b>Sum:</b> {{ order.sum | currency:'UAH':'symbol-narrow':'3.2-2' }}</div>-->
     </div>
   </div>

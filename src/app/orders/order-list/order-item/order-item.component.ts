@@ -30,4 +30,8 @@ export class OrderItemComponent implements OnInit {
       link: '', meal: '', drink: '', ready: false
     });
   }
+
+  editOrder(order) {
+
+  }
 }

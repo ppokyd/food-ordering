@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit() {
     this.user = firebase.auth().currentUser;
-    console.log(this.user);
   }
 
   logout() {
