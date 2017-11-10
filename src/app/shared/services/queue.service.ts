@@ -11,16 +11,22 @@ export class QueueService {
     private db: AngularFireDatabase
   ) {
     this.queueRef = db.list('queue');
-    this.queue = this.queueRef.valueChanges();
+    this.queue = this.queueRef.snapshotChanges();
   }
 
   getQueue() {
     return this.queue;
   }
 
+  updateLastDelivery(person) {
+    person.ordersAmount++;
+    this.queueRef.update(person.key, person);
+  }
+
   suggestDeliveryPerson() {
     return this.queue.map(val => {
-      return val.sort((a, b) => a.ordersAmount - b.ordersAmount);
+      return val.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        .sort((a, b) => a.ordersAmount - b.ordersAmount);
     });
   }
 

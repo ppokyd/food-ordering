@@ -19,6 +19,7 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   @Output() onMarkCompleted = new EventEmitter();
   @Input() key: any;
   state = 'add';
+  collapsed = true;
   user: any;
   order: any;
   editingIndex: any;

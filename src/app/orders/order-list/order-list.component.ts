@@ -66,7 +66,7 @@ export class OrderListComponent implements OnInit {
 
   onComplete(order, key) {
     order.completed = true;
-    console.log(order, key);
     this.ordersRef.update(key, order);
+    this.queueService.updateLastDelivery(this.queue.find(q => q.name === order.delivery));
   }
 }
