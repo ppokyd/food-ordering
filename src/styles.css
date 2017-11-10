@@ -6,3 +6,12 @@ button.btn {
 .actions i {
   cursor: pointer;
 }
+
+.material-icons.done {
+  color: green;
+  font-weight: bold;
+}
+
+.card-body {
+  overflow: hidden;
+}

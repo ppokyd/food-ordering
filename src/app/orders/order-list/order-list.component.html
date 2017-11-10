@@ -1,8 +1,8 @@
 <hr>
-<div class="row justify-content-md-center">
-  <div class="col-10">
+<div class="row justify-content-center">
+  <div class="col-md-10">
     <div class="form-row">
-      <div class="col-6">
+      <div class="col-md-6">
         <!--<input type="text" class="form-control" placeholder="Delivery" [(ngModel)]="order.delivery">-->
 
         <select class="form-control" placeholder="Delivery" [(ngModel)]="order.delivery">
@@ -10,26 +10,28 @@
                   [value]="item.name">{{ item.name }} - ordered {{ item.ordersAmount }} times</option>
         </select>
       </div>
-      <div class="col">
+      <div class="col-md-3">
         <select class="form-control" placeholder="Place" [(ngModel)]="order.place">
           <option *ngFor="let place of places;" value="{{place.name}}">{{ place.name }}</option>
         </select>
       </div>
-      <button class="btn btn-success"
-              *ngIf="state === 'add'"
-              (click)="addOrder()"
-              [disabled]="!order.delivery || !order.place">Add Order</button>
+      <div class="col-md-3">
+        <button class="btn btn-success"
+                *ngIf="state === 'add'"
+                (click)="addOrder()"
+                [disabled]="!order.delivery || !order.place">Add Order</button>
 
-      <button class="btn btn-success"
-              *ngIf="state === 'edit'"
-              (click)="updateOrder()"
-              [disabled]="!order.delivery || !order.place">Update Order</button>
+        <button class="btn btn-success"
+                *ngIf="state === 'edit'"
+                (click)="updateOrder()"
+                [disabled]="!order.delivery || !order.place">Update Order</button>
+      </div>
     </div>
   </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-12">
+  <div class="col-md-12">
     <app-order-item *ngFor="let item of orders | async; let i = index;"
                     [key]="item.key"
                     (onEditOrder)="onEdit(item)"

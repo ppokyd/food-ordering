@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header" (click)="collapsed = !collapsed">
     <div class="row">
-      <div class="col-sm-11">
+      <div class="col-sm-10">
         <div class="row">
           <div class="col-sm"><b>Delivery:</b> {{ order.delivery}}</div>
           <div class="col-sm"><b>Date:</b> {{ order.date | date }}</div>
@@ -9,20 +9,20 @@
           <div class="col-sm" *ngIf="order.completed"><b>Sum:</b> {{ order.sum | currency:'UAH'}}</div>
         </div>
       </div>
-      <div class="col-sm-1 actions" *ngIf="!order.completed">
+      <div class="col-sm-2 actions" *ngIf="!order.completed">
         <i class="material-icons" (click)="editOrder(order)">edit</i>
         <i class="material-icons" (click)="deleteOrder(order)">delete</i>
       </div>
-      <div class="col-sm-1" *ngIf="order.completed">
-        <i class="material-icons">done</i>
+      <div class="col-sm-2 text-right" *ngIf="order.completed">
+        <i class="material-icons done">done</i>
       </div>
       <!--<div class="col-sm"><b>Sum:</b> {{ order.sum | currency:'UAH':'symbol-narrow':'3.2-2' }}</div>-->
     </div>
   </div>
   <div class="card-body" *ngIf="!order.completed || !collapsed">
     <div class="row">
-      <div class="col-12">
-        <table class="table table-sm table-striped table-responsive-md">
+      <div class="col-md-12">
+        <table class="table table-sm table-striped">
           <thead>
           <tr>
             <th scope="col">Person</th>
@@ -41,7 +41,9 @@
             </td>
             <td>{{ row.meal }}</td>
             <td>{{ row.drink }}</td>
-            <td>{{ row.ready }}</td>
+            <td>
+              <i *ngIf="row.ready" class="material-icons done">done</i>
+            </td>
             <td class="actions" *ngIf="!order.completed">
               <i class="material-icons" (click)="changeRowState(row)">done</i>
               <i class="material-icons" (click)="editOrderRow(row, i)">edit</i>
@@ -54,40 +56,44 @@
     </div>
     <span *ngIf="!order.completed">
       <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
           <div class="form-row">
-            <div class="col-2">
+            <div class="col-md-2">
               <input type="text" class="form-control" placeholder="Person" [(ngModel)]="orderItem.person">
             </div>
-            <div class="col">
+            <div class="col-md">
               <input type="text" class="form-control" placeholder="Link" [(ngModel)]="orderItem.link">
             </div>
-            <div class="col">
+            <div class="col-md">
               <input type="text" class="form-control" placeholder="Meal" [(ngModel)]="orderItem.meal">
             </div>
-            <div class="col">
+            <div class="col-md">
               <input type="text" class="form-control" placeholder="Drink" [(ngModel)]="orderItem.drink">
             </div>
-            <button class="btn btn-primary"
-                    *ngIf="state === 'add'"
-                    (click)="addOrderRow()"
-                    [disabled]="!orderItem.meal || !orderItem.person">Add</button>
-            <button class="btn btn-primary"
-                    *ngIf="state === 'edit'"
-                    (click)="updateOrderRow()"
-                    [disabled]="!orderItem.meal || !orderItem.person">Update</button>
+            <div class="col-md">
+              <button class="btn btn-primary"
+                      *ngIf="state === 'add'"
+                      (click)="addOrderRow()"
+                      [disabled]="!orderItem.meal || !orderItem.person">Add</button>
+              <button class="btn btn-primary"
+                      *ngIf="state === 'edit'"
+                      (click)="updateOrderRow()"
+                      [disabled]="!orderItem.meal || !orderItem.person">Update</button>
+            </div>
           </div>
         </div>
       </div>
       <hr>
       <div class="row">
-      <div class="col-12">
+      <div class="col-md-12">
         <div class="row">
-          <div class="col-9">
+          <div class="col-md-9">
             <input type="text" class="form-control" placeholder="Sum" [(ngModel)]="order.sum">
           </div>
-          <button class="btn btn-success"
-                  (click)="markCompleted(order)">Mark Completed</button>
+          <div class="col-md">
+            <button class="btn btn-success"
+                    (click)="markCompleted(order)">Mark Completed</button>
+          </div>
         </div>
       </div>
     </div>

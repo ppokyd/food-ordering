@@ -20,13 +20,15 @@ export class QueueService {
 
   updateLastDelivery(person) {
     person.ordersAmount++;
+    person.lastOrdered = +new Date;
     this.queueRef.update(person.key, person);
   }
 
   suggestDeliveryPerson() {
     return this.queue.map(val => {
       return val.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        .sort((a, b) => a.ordersAmount - b.ordersAmount);
+        .sort((a, b) => a.ordersAmount - b.ordersAmount)
+        .sort((a, b) => a.lastOrdered - b.lastOrdered);
     });
   }
 
