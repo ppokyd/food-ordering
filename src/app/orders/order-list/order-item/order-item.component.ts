@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { OrderItemService } from './order-item.service';
 import { OrderItem } from './order-item.model';
 import { Order } from '../../order.model';
@@ -12,13 +12,17 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./order-item.component.css'],
   providers: [ OrderItemService ]
 })
-export class OrderItemComponent implements OnInit {
+export class OrderItemComponent implements OnInit, OnDestroy {
   orderRef: AngularFireObject<Order>;
-  state = 'add';
-  user: any;
-  @Input() order: any;
   @Output() onEditOrder = new EventEmitter();
   @Output() onDeleteOrder = new EventEmitter();
+  @Output() onMarkCompleted = new EventEmitter();
+  @Input() key: any;
+  state = 'add';
+  user: any;
+  order: any;
+  editingIndex: any;
+  sub: any;
   orderItem: OrderItem = {
     person: '', link: '', meal: '', drink: '', ready: false
   };
@@ -27,47 +31,56 @@ export class OrderItemComponent implements OnInit {
     private db: AngularFireDatabase,
     private service: OrderItemService
   ) {
-
+    this.order = {};
   }
 
   ngOnInit() {
-    this.orderRef = this.db.object('/orders/' + this.order.key);
-    this.orderRef.valueChanges().subscribe(order => {
+    this.orderRef = this.db.object('/orders/' + this.key);
+    this.sub = this.orderRef.valueChanges().subscribe(order => {
       this.order = order;
-      this.order.items = this.order.items || [];
     });
     this.user = firebase.auth().currentUser;
     this.orderItem.person = this.user.displayName;
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   addOrderRow() {
-    this.order.items.push(this.orderItem);
-    this.orderRef.update(this.order);
+    const index = (this.order.items || []).length;
+    this.service.updateRow(this.key, index || 0, this.orderItem);
     this.orderItem = Object.assign({person: this.user.displayName}, {
       link: '', meal: '', drink: '', ready: false
     });
   }
 
-  updateOrderRow(index) {
-    this.service.updateRow(this.order.key, index, this.orderItem);
+  updateOrderRow() {
+    this.service.updateRow(this.key, this.editingIndex, this.orderItem);
     this.orderItem = Object.assign({person: this.user.displayName}, {
       link: '', meal: '', drink: '', ready: false
     });
+    this.editingIndex = null;
     this.state = 'add';
   }
 
-  editOrderRow(row) {
+  editOrderRow(row, index) {
     this.orderItem = Object.assign({}, row);
+    this.editingIndex = index;
     this.state = 'edit';
   }
 
   deleteOrderRow(index) {
-    this.service.removeRow(this.order.key, index);
+    this.service.removeRow(this.key, index);
   }
 
   changeRowState(row) {
     row.ready = !row.ready;
     this.orderRef.update(this.order);
+  }
+
+  markCompleted(order) {
+    this.onMarkCompleted.emit(order);
   }
 
   editOrder(order) {

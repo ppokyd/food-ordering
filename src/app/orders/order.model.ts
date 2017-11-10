@@ -8,6 +8,7 @@ export class Order {
     public delivery: string,
     public sum: number,
     public place: string,
-    public key: string
+    public key: string,
+    public completed: boolean
   ) {}
 }

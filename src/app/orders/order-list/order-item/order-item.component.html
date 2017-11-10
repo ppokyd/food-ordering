@@ -40,7 +40,7 @@
             <td>{{ row.ready }}</td>
             <td class="actions">
               <i class="material-icons" (click)="changeRowState(row)">done</i>
-              <i class="material-icons" (click)="editOrderRow(row)">edit</i>
+              <i class="material-icons" (click)="editOrderRow(row, i)">edit</i>
               <i class="material-icons" (click)="deleteOrderRow(i)">delete</i>
             </td>
           </tr>
@@ -71,6 +71,18 @@
                   *ngIf="state === 'edit'"
                   (click)="updateOrderRow()"
                   [disabled]="!orderItem.meal || !orderItem.person">Update</button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Sum" [(ngModel)]="order.sum">
+          </div>
+          <button class="btn btn-success"
+                  (click)="markCompleted(order)">Mark Completed</button>
         </div>
       </div>
     </div>

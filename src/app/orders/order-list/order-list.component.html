@@ -31,9 +31,10 @@
 <div class="row">
   <div class="col-12">
     <app-order-item *ngFor="let item of orders | async; let i = index;"
-                    [ngStyle]="{opacity: i ? .7 : 1}"
-                    [order]="item"
+                    [ngStyle]="{opacity: item.completed ? .7 : 1}"
+                    [key]="item.key"
                     (onEditOrder)="onEdit(item)"
-                    (onDeleteOrder)="onDelete(item, i)"></app-order-item>
+                    (onDeleteOrder)="onDelete(item, i)"
+                    (onMarkCompleted)="onComplete($event, item.key)"></app-order-item>
   </div>
 </div>

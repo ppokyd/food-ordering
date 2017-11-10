@@ -17,4 +17,9 @@ export class OrderItemService {
     this.db.object(`/orders/${orderKey}/items/${index}`)
       .update(data);
   }
+
+  addRow(orderKey, index, data) {
+    this.db.object(`/orders/${orderKey}/items/${index}`)
+      .set(data);
+  }
 }

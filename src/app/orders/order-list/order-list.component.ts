@@ -17,7 +17,7 @@ export class OrderListComponent implements OnInit {
   ordersRef: AngularFireList<Order>;
   orders: Observable<Order[]>;
   order: Order = {
-    items: [], delivery: '', place: '', date: +new Date, sum: 0, key: ''
+    items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false
   };
   queue = [];
   places = [];
@@ -45,8 +45,9 @@ export class OrderListComponent implements OnInit {
   }
 
   addOrder() {
+    delete this.order.key;
     this.ordersRef.push(this.order);
-    this.order = { items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '' };
+    this.order = { items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false };
   }
 
   updateOrder() {
@@ -61,5 +62,11 @@ export class OrderListComponent implements OnInit {
 
   onDelete(order) {
     this.ordersRef.remove(order.key);
+  }
+
+  onComplete(order, key) {
+    order.completed = true;
+    console.log(order, key);
+    this.ordersRef.update(key, order);
   }
 }
