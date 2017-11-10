@@ -8,8 +8,9 @@
           <div class="col-sm"><b>Place:</b> {{ order.place }}</div>
         </div>
       </div>
-      <div class="col-sm-1">
+      <div class="col-sm-1 actions">
         <i class="material-icons" (click)="editOrder(order)">edit</i>
+        <i class="material-icons" (click)="deleteOrder(order)">delete</i>
       </div>
       <!--<div class="col-sm"><b>Sum:</b> {{ order.sum | currency:'UAH':'symbol-narrow':'3.2-2' }}</div>-->
     </div>
@@ -17,7 +18,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-12">
-        <table class="table table-striped table-responsive-md">
+        <table class="table table-sm table-striped table-responsive-md">
           <thead>
           <tr>
             <th scope="col">Person</th>
@@ -29,7 +30,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let row of order.items">
+          <tr *ngFor="let row of order.items; let i = index;">
             <td>{{ row.person }}</td>
             <td class="link">
               <a href="{{ row.link }}" target="_blank">{{ row.link }}</a>
@@ -37,9 +38,9 @@
             <td>{{ row.meal }}</td>
             <td>{{ row.drink }}</td>
             <td>{{ row.ready }}</td>
-            <td>
-              <i class="material-icons" (click)="row.ready = true">done</i>
-              <i class="material-icons">delete</i>
+            <td class="actions">
+              <i class="material-icons" (click)="changeRowState(row)">done</i>
+              <i class="material-icons" (click)="deleteOrderRow(i)">delete</i>
             </td>
           </tr>
           </tbody>
@@ -61,7 +62,7 @@
           <div class="col">
             <input type="text" class="form-control" placeholder="Drink" [(ngModel)]="orderItem.drink">
           </div>
-          <button class="btn btn-primary" (click)="addRow()">Add</button>
+          <button class="btn btn-primary" (click)="addRow()" [disabled]="!orderItem.meal || !orderItem.person">Add</button>
         </div>
       </div>
     </div>

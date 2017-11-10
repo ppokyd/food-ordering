@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { QueueService } from './shared/services/queue.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { environment } from '../environments/environment';
     AngularFireAuthModule
   ],
   providers: [
-    AngularFireDatabase
+    AngularFireDatabase,
+    QueueService
   ],
   bootstrap: [AppComponent]
 })

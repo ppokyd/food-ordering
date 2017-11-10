@@ -7,6 +7,7 @@ export class Order {
     public date: number,
     public delivery: string,
     public sum: number,
-    public place: string
+    public place: string,
+    public key: string
   ) {}
 }

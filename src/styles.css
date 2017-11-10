@@ -2,3 +2,7 @@
 button.btn {
   cursor: pointer;
 }
+
+.actions i {
+  cursor: pointer;
+}
