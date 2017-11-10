@@ -14,7 +14,7 @@ import * as firebase from 'firebase/app';
 })
 export class OrderItemComponent implements OnInit {
   orderRef: AngularFireObject<Order>;
-  // orderRef: Observable<Order[]>;
+  state = 'add';
   user: any;
   @Input() order: any;
   @Output() onEditOrder = new EventEmitter();
@@ -40,12 +40,25 @@ export class OrderItemComponent implements OnInit {
     this.orderItem.person = this.user.displayName;
   }
 
-  addRow() {
+  addOrderRow() {
     this.order.items.push(this.orderItem);
     this.orderRef.update(this.order);
     this.orderItem = Object.assign({person: this.user.displayName}, {
       link: '', meal: '', drink: '', ready: false
     });
+  }
+
+  updateOrderRow(index) {
+    this.service.updateRow(this.order.key, index, this.orderItem);
+    this.orderItem = Object.assign({person: this.user.displayName}, {
+      link: '', meal: '', drink: '', ready: false
+    });
+    this.state = 'add';
+  }
+
+  editOrderRow(row) {
+    this.orderItem = Object.assign({}, row);
+    this.state = 'edit';
   }
 
   deleteOrderRow(index) {

@@ -9,6 +9,12 @@ export class OrderItemService {
   ) {}
 
   removeRow(orderKey, index) {
-    this.db.object(`/orders/${orderKey}/items/${index}`).remove();
+    this.db.object(`/orders/${orderKey}/items/${index}`)
+      .remove();
+  }
+
+  updateRow(orderKey, index, data) {
+    this.db.object(`/orders/${orderKey}/items/${index}`)
+      .update(data);
   }
 }

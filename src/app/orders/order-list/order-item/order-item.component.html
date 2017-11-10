@@ -40,6 +40,7 @@
             <td>{{ row.ready }}</td>
             <td class="actions">
               <i class="material-icons" (click)="changeRowState(row)">done</i>
+              <i class="material-icons" (click)="editOrderRow(row)">edit</i>
               <i class="material-icons" (click)="deleteOrderRow(i)">delete</i>
             </td>
           </tr>
@@ -62,7 +63,14 @@
           <div class="col">
             <input type="text" class="form-control" placeholder="Drink" [(ngModel)]="orderItem.drink">
           </div>
-          <button class="btn btn-primary" (click)="addRow()" [disabled]="!orderItem.meal || !orderItem.person">Add</button>
+          <button class="btn btn-primary"
+                  *ngIf="state === 'add'"
+                  (click)="addOrderRow()"
+                  [disabled]="!orderItem.meal || !orderItem.person">Add</button>
+          <button class="btn btn-primary"
+                  *ngIf="state === 'edit'"
+                  (click)="updateOrderRow()"
+                  [disabled]="!orderItem.meal || !orderItem.person">Update</button>
         </div>
       </div>
     </div>

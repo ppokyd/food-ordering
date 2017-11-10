@@ -38,7 +38,6 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit() {
     this.places = this.ordersService.getListOfPlaces();
-    // this.queue = this.queueService.getQueue();
     this.queueService.suggestDeliveryPerson().subscribe(res => {
       this.queue = res;
       this.order.delivery = res[0].name;
@@ -61,7 +60,6 @@ export class OrderListComponent implements OnInit {
   }
 
   onDelete(order) {
-    console.log(order.key);
     this.ordersRef.remove(order.key);
   }
 }
