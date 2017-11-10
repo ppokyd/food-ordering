@@ -81,7 +81,9 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   }
 
   markCompleted(order) {
-    this.onMarkCompleted.emit(order);
+    if (order.items.filter(i => !i.completed).length > 0) {
+      this.onMarkCompleted.emit(order);
+    }
   }
 
   editOrder(order) {

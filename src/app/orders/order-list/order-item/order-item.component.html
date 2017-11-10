@@ -21,7 +21,7 @@
   </div>
   <div class="card-body" *ngIf="!order.completed || !collapsed">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 form-group">
         <table class="table table-sm table-striped">
           <thead>
           <tr>
@@ -54,23 +54,24 @@
         </table>
       </div>
     </div>
+    <hr>
     <span *ngIf="!order.completed">
       <div class="row">
         <div class="col-md-12">
           <div class="form-row">
-            <div class="col-md-2">
+            <div class="col-md-2 form-group">
               <input type="text" class="form-control" placeholder="Person" [(ngModel)]="orderItem.person">
             </div>
-            <div class="col-md">
+            <div class="col-md form-group">
               <input type="text" class="form-control" placeholder="Link" [(ngModel)]="orderItem.link">
             </div>
-            <div class="col-md">
+            <div class="col-md form-group">
               <input type="text" class="form-control" placeholder="Meal" [(ngModel)]="orderItem.meal">
             </div>
-            <div class="col-md">
+            <div class="col-md form-group">
               <input type="text" class="form-control" placeholder="Drink" [(ngModel)]="orderItem.drink">
             </div>
-            <div class="col-md">
+            <div class="col-md form-group">
               <button class="btn btn-primary"
                       *ngIf="state === 'add'"
                       (click)="addOrderRow()"
@@ -87,11 +88,12 @@
       <div class="row">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-9 form-group">
             <input type="text" class="form-control" placeholder="Sum" [(ngModel)]="order.sum">
           </div>
-          <div class="col-md">
+          <div class="col form-group">
             <button class="btn btn-success"
+                    [disabled]="order.sum == 0 || (order.items || []).length === 0"
                     (click)="markCompleted(order)">Mark Completed</button>
           </div>
         </div>
