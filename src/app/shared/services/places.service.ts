@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
+@Injectable()
+export class PlacesService {
+  placesRef: AngularFireList<any>;
+  places: Observable<any[]>;
+
+  constructor(
+    private db: AngularFireDatabase
+  ) {
+    this.placesRef = db.list('places');
+    this.places = this.placesRef.snapshotChanges();
+  }
+
+  getPlaces() {
+    return this.places.map(val => {
+      return val.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+  }
+
+  addPlace(name) {
+    const value = name.toLowerCase().replace(/[^\w\s]/gi, '') || +new Date;
+    this.placesRef.push({name, value});
+  }
+}

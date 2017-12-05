@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Food Orders</a>
+  <a class="navbar-brand" routerLink="/orders">Food Orders</a>
 
   <ul class="navbar-nav mr-auto">
-    <!--<li class="nav-item active">-->
-      <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-      <!--<a class="nav-link" href="#">Features</a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-      <!--<a class="nav-link" href="#">Pricing</a>-->
-    <!--</li>-->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/orders" routerLinkActive="active">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/people" routerLinkActive="active">We</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/places" routerLinkActive="active">Places</a>
+    </li>
   </ul>
 
   <ul class="navbar-nav" *ngIf="user">

@@ -15,7 +15,15 @@ export class QueueService {
   }
 
   getQueue() {
-    return this.queue;
+    return this.queue.map(val => {
+      return val.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+  }
+
+  addPerson(name) {
+    this.queueRef.push({
+      name, ordersAmount: 0
+    });
   }
 
   updateLastDelivery(person) {

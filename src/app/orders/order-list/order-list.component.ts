@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { OrdersService } from '../orders.service';
+import { PlacesService } from './../../shared/services/places.service';
 import { QueueService } from '../../shared/services/queue.service';
 
 import { Order } from '../order.model';
@@ -25,7 +25,7 @@ export class OrderListComponent implements OnInit {
 
   constructor(
     private db: AngularFireDatabase,
-    private ordersService: OrdersService,
+    private placesService: PlacesService,
     private queueService: QueueService
   ) {
     this.ordersRef = db.list('orders');
@@ -37,7 +37,9 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.places = this.ordersService.getListOfPlaces();
+    this.placesService.getPlaces().subscribe(res => {
+      this.places = res;
+    });
     this.queueService.suggestDeliveryPerson().subscribe(res => {
       this.queue = res;
       this.order.delivery = res[0].name;

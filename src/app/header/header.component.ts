@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { AppService } from '../shared/services/app.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +8,15 @@ import * as firebase from 'firebase/app';
 export class HeaderComponent implements OnInit{
   user: any;
 
-  constructor(public afAuth: AngularFireAuth) {
-  }
+  constructor(
+    public appService: AppService
+  ) {}
 
   ngOnInit() {
-    this.user = firebase.auth().currentUser;
+    this.user = this.appService.getCurrentUser();
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    this.appService.logout();
   }
 }

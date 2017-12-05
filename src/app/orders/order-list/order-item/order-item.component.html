@@ -54,6 +54,16 @@
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-sm table-striped">
+          <tr *ngFor="let meal of orderMeals">
+            <td width="90%">{{ meal.name }}</td>
+            <td width="10%">{{ meal.amount }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
     <hr>
     <span *ngIf="!order.completed">
       <div class="row">
