@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlacesComponent implements OnInit {
   public name = '';
+  public link = '';
   public list: any[];
   public adminMode = false;
 
@@ -26,5 +27,13 @@ export class PlacesComponent implements OnInit {
 
   addPlace() {
     this.placesService.addPlace(this.name);
+  }
+
+  openLink(link) {
+    const a = <HTMLAnchorElement>document.createElement('A');
+    a.target = '_blank';
+    a.href = link;
+    document.body.appendChild(a);
+    a.click();
   }
 }

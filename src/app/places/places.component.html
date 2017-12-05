@@ -1,12 +1,16 @@
 <div class="row justify-content-center">
-  <div class="col-6">
+  <div class="col-10">
     <table class="table table-sm table-striped">
       <thead>
         <th>Name</th>
+        <th>Link</th>
       </thead>
       <tbody>
         <tr *ngFor="let place of list;">
           <td>{{ place.name }}</td>
+          <td class="table-actions">
+            <i class="material-icons" (click)="openLink(place.link)">open_in_new</i>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -14,13 +18,18 @@
 </div>
 
 <div class="row justify-content-center" *ngIf="adminMode">
-  <div class="col-6">
+  <div class="col-10">
     <div class="form-row">
-      <div class="col-md-8 form-group">
+      <div class="col-md-3 form-group">
         <label>Name</label>
         <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="name">
       </div>
-      <div class="col-md-4 form-group">
+
+      <div class="col-md-6 form-group">
+        <label>Link</label>
+        <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="link">
+      </div>
+      <div class="col-md-3 form-group">
         <label>&nbsp;</label>
         <div class="row justify-content-end">
           <div class="col-5">
