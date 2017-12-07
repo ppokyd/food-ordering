@@ -26,7 +26,7 @@ export class PlacesComponent implements OnInit {
   }
 
   addPlace() {
-    this.placesService.addPlace(this.name);
+    this.placesService.addPlace(this.name, this.link);
   }
 
   openLink(link) {

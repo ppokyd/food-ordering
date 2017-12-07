@@ -40,7 +40,6 @@ export class OrdersSummaryComponent implements OnInit {
     if (prevMonth < 0) {
       prevMonth = 12;
     }
-    console.log(prevMonth);
     const prevRes = res.filter(i => moment(i.date).get('month') === prevMonth);
     this.prevSumm = prevRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
   }

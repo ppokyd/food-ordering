@@ -20,9 +20,9 @@ export class PlacesService {
     });
   }
 
-  addPlace(name) {
+  addPlace(name, link) {
     const value = name.toLowerCase().replace(/[^\w\s]/gi, '') || +new Date;
-    this.placesRef.push({name, value, orderAmount: 0});
+    this.placesRef.push({name, link, value, orderAmount: 0});
   }
 
   updatePlaceOrders(placeName) {

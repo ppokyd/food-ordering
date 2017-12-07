@@ -12,7 +12,7 @@
             <td>{{ place.name }}</td>
             <td>{{ place.orderAmount }}</td>
             <td class="table-actions">
-              <i class="material-icons" (click)="openLink(place.link)">open_in_new</i>
+              <i *ngIf="place.link" class="material-icons" (click)="openLink(place.link)">open_in_new</i>
             </td>
           </tr>
         </tbody>
@@ -30,7 +30,7 @@
 
         <div class="col-md-6 form-group">
           <label>Link</label>
-          <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="link">
+          <input type="text" class="form-control" placeholder="Enter link" [(ngModel)]="link">
         </div>
         <div class="col-md-3 form-group">
           <label>&nbsp;</label>
