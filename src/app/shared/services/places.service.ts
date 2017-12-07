@@ -22,6 +22,14 @@ export class PlacesService {
 
   addPlace(name) {
     const value = name.toLowerCase().replace(/[^\w\s]/gi, '') || +new Date;
-    this.placesRef.push({name, value});
+    this.placesRef.push({name, value, orderAmount: 0});
+  }
+
+  updatePlaceOrders(placeName) {
+    this.getPlaces().subscribe(res => {
+      const place = res.find(p => p.name === placeName);
+      place.orderAmount++;
+      this.placesRef.update(place.key, place);
+    });
   }
 }

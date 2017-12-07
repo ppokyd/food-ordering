@@ -1,0 +1,19 @@
+<div class="row py-4">
+  <div class="col-12">
+    <h5>We already spent:</h5>
+    <p><b>{{ totalSumm | currency:'UAH' }}</b></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <h5>This month:</h5>
+    <p>{{ thisSumm | currency:'UAH' }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <h5>Previous month:</h5>
+    <p>{{ prevSumm | currency:'UAH' }}</p>
+  </div>
+</div>
+

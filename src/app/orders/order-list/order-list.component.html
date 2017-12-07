@@ -31,7 +31,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <app-order-item *ngFor="let item of orders | async; let i = index;"
+    <app-order-item *ngFor="let item of orders; let i = index;"
                     [key]="item.key"
                     (onEditOrder)="onEdit(item)"
                     (onDeleteOrder)="onDelete(item, i)"
