@@ -40,7 +40,7 @@ export class OrderItemComponent implements OnInit, OnDestroy {
     this.orderRef = this.db.object('/orders/' + this.key);
     this.sub = this.orderRef.valueChanges().subscribe(order => {
       this.order = order;
-      this.calcOrderMeals()
+      this.calcOrderMeals();
     });
     this.user = firebase.auth().currentUser;
     this.orderItem.person = this.user.displayName;
@@ -99,9 +99,16 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   calcOrderMeals() {
     const result = {};
     this.orderMeals = [];
-    if (this.order.items) {
+    if (this.order && this.order.items) {
       this.order.items.forEach((i) => {
-        result[i.meal] = (result[i.meal] || 0) + 1;
+        if (i.meal) {
+          const meal = i.meal.trim();
+          result[meal] = (result[meal] || 0) + 1;
+        }
+        if (i.drink) {
+          const drink = i.drink.trim();
+          result[drink] = (result[drink] || 0) + 1;
+        }
       });
     }
     for (let key in result) {

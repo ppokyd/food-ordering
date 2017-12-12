@@ -1,21 +1,19 @@
 <hr>
-<div class="row justify-content-center">
-  <div class="col-md-10">
+<div class="row justify-content-between">
+  <div class="col-md-9">
     <div class="form-row">
-      <div class="col-md-6 form-group">
-        <!--<input type="text" class="form-control" placeholder="Delivery" [(ngModel)]="order.delivery">-->
-
+      <div class="col-md-4 form-group">
         <select class="form-control" placeholder="Delivery" [(ngModel)]="order.delivery">
           <option *ngFor="let item of queue;"
                   [value]="item.name">{{ item.name }} - ordered {{ item.ordersAmount }} times</option>
         </select>
       </div>
-      <div class="col-md-3 form-group">
+      <div class="col-md-4 form-group">
         <select class="form-control" placeholder="Place" [(ngModel)]="order.place">
           <option *ngFor="let place of places;" value="{{place.name}}">{{ place.name }}</option>
         </select>
       </div>
-      <div class="col-md-3 form-group">
+      <div class="col-md-4 form-group">
         <button class="btn btn-success"
                 *ngIf="state === 'add'"
                 (click)="addOrder()"
@@ -25,6 +23,20 @@
                 *ngIf="state === 'edit'"
                 (click)="updateOrder()"
                 [disabled]="!order.delivery || !order.place">Update Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="form-row">
+      <div class="col-4 form-group">
+        <label class="col-form-label">Filter by:</label>
+      </div>
+      <div class="col form-group">
+        <select class="form-control" [(ngModel)]="filterMonth" (change)="filterOrdersBy($event.target.value)">
+          <option value="this_month">This Month</option>
+          <option value="prev_month">Prev Month</option>
+          <option value="all">All</option>
+        </select>
       </div>
     </div>
   </div>

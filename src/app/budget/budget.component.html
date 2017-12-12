@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <table class="table table-sm table-striped">
+        <thead>
+          <th>Year</th>
+          <th>Month</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of budget;">
+            <td>{{ record.year }}</td>
+            <td>{{ getMonthName(record.month) }}</td>
+            <td>{{ record.amount | currency:'UAH' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center" *ngIf="adminMode">
+    <div class="col-10">
+      <div class="form-row">
+        <div class="col-md-3 form-group">
+          <label>Month</label>
+          <select class="form-control" [(ngModel)]="month">
+            <option *ngFor="let month of months; let i = index;" [ngValue]="i" placeholder="Select month">{{ month }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label>Amount</label>
+          <input type="number" class="form-control" placeholder="Enter amount" [(ngModel)]="amount">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>&nbsp;</label>
+          <div class="row justify-content-start">
+            <div class="col-5">
+              <button class="btn btn-outline-primary" (click)="addBudget()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

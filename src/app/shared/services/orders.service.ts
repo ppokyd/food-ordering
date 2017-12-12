@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
@@ -31,5 +33,24 @@ export class OrdersService {
 
   removeOrder(key) {
     this.ordersRef.remove(key);
+  }
+
+  calcTotalSum(res) {
+    return res.reduce((s, a) => s + parseInt(a.sum, 10), 0);
+  }
+
+  calcThisSum(res) {
+    const curMonth = moment().get('month');
+    const curRes = res.filter(i => moment(i.date).get('month') === curMonth);
+    return curRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
+  }
+
+  calcPrevSum(res) {
+    let prevMonth = moment().get('month') - 1;
+    if (prevMonth < 0) {
+      prevMonth = 12;
+    }
+    const prevRes = res.filter(i => moment(i.date).get('month') === prevMonth);
+    return prevRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
   }
 }

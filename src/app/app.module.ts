@@ -12,6 +12,7 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { OrderItemComponent } from './orders/order-list/order-item/order-item.component';
 import { OrdersSummaryComponent } from './orders/orders-summary/orders-summary.component';
+import { OrdersBudgetComponent } from './orders/orders-budget/orders-budget.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -23,6 +24,8 @@ import { PeopleComponent } from './people/people.component';
 import { PlacesComponent } from './places/places.component';
 import { PlacesService } from './shared/services/places.service';
 import { OrdersService } from './shared/services/orders.service';
+import { BudgetComponent } from './budget/budget.component';
+import { BudgetService } from './shared/services/budget.service';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,13 @@ import { OrdersService } from './shared/services/orders.service';
     HeaderComponent,
     OrdersComponent,
     OrdersSummaryComponent,
+    OrdersBudgetComponent,
     OrderListComponent,
     OrderDetailComponent,
     OrderItemComponent,
     PeopleComponent,
-    PlacesComponent
+    PlacesComponent,
+    BudgetComponent
 ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { OrdersService } from './shared/services/orders.service';
     QueueService,
     AppService,
     PlacesService,
-    OrdersService
+    OrdersService,
+    BudgetService
   ],
   bootstrap: [AppComponent]
 })

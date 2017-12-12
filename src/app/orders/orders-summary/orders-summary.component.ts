@@ -1,5 +1,3 @@
-import * as moment from 'moment';
-
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './../../shared/services/orders.service';
 
@@ -19,29 +17,10 @@ export class OrdersSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.ordersService.getOrders().subscribe(res => {
-      this.calcTotalSumm(res);
-      this.calcThisSumm(res);
-      this.calcPrevSumm(res);
+      this.totalSumm = this.ordersService.calcTotalSum(res);
+      this.thisSumm = this.ordersService.calcThisSum(res);
+      this.prevSumm = this.ordersService.calcPrevSum(res);
     });
-  }
-
-  calcTotalSumm(res) {
-    this.totalSumm = res.reduce((s, a) => s + parseInt(a.sum, 10), 0);
-  }
-
-  calcThisSumm(res) {
-    const curMonth = moment().get('month');
-    const curRes = res.filter(i => moment(i.date).get('month') === curMonth);
-    this.thisSumm = curRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
-  }
-
-  calcPrevSumm(res) {
-    let prevMonth = moment().get('month') - 1;
-    if (prevMonth < 0) {
-      prevMonth = 12;
-    }
-    const prevRes = res.filter(i => moment(i.date).get('month') === prevMonth);
-    this.prevSumm = prevRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
   }
 
 }

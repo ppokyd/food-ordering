@@ -15,24 +15,22 @@ import { Order } from '../order.model';
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent implements OnInit {
-  orders: any[];
+  orders = [];
   order: Order = {
     items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false
   };
   queue = [];
   places = [];
   state = 'add';
+  currentPage = 1;
+  filterMonth = 'this_month';
 
   constructor(
     private db: AngularFireDatabase,
     private placesService: PlacesService,
     private queueService: QueueService,
     private ordersService: OrdersService
-  ) {
-    this.ordersService.getOrders().subscribe(res => {
-      this.orders = res;
-    });
-  }
+  ) { }
 
   ngOnInit() {
     this.placesService.getPlaces().subscribe(res => {
@@ -42,12 +40,13 @@ export class OrderListComponent implements OnInit {
       this.queue = res;
       this.order.delivery = res[0].name;
     });
+
+    this.filterOrdersBy(this.filterMonth);
   }
 
   addOrder() {
     delete this.order.key;
     this.ordersService.addOrder(this.order);
-    this.placesService.updatePlaceOrders(this.order.place);
     this.order = { items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false };
   }
 
@@ -68,6 +67,28 @@ export class OrderListComponent implements OnInit {
   onComplete(order, key) {
     order.completed = true;
     this.ordersService.updateOrder(key, order);
+    this.placesService.updatePlaceOrders(this.places.find(p => p.name === order.place));
     this.queueService.updateLastDelivery(this.queue.find(q => q.name === order.delivery));
+  }
+
+  filterOrdersBy(value) {
+    let month = new Date().getMonth();
+
+    this.ordersService.getOrders().subscribe(res => {
+      if (value === 'prev_month') {
+        if (month === 0) {
+          month = 11;
+        } else {
+          month--;
+        }
+      } else if (value === 'all') {
+        this.orders = res;
+        return;
+      }
+
+      this.orders = res.filter(o => {
+        return new Date(o.date).getMonth() === month;
+      });
+    });
   }
 }

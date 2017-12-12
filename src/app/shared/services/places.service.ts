@@ -25,11 +25,8 @@ export class PlacesService {
     this.placesRef.push({name, link, value, orderAmount: 0});
   }
 
-  updatePlaceOrders(placeName) {
-    this.getPlaces().subscribe(res => {
-      const place = res.find(p => p.name === placeName);
-      place.orderAmount++;
-      this.placesRef.update(place.key, place);
-    });
+  updatePlaceOrders(place) {
+    place.orderAmount++;
+    this.placesRef.update(place.key, place);
   }
 }
