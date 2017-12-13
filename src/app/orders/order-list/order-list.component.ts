@@ -15,7 +15,7 @@ import { Order } from '../order.model';
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent implements OnInit {
-  orders = [];
+  orders;
   order: Order = {
     items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false
   };

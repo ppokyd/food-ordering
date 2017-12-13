@@ -42,11 +42,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="orders && orders.length !== 0">
     <app-order-item *ngFor="let item of orders; let i = index;"
                     [key]="item.key"
                     (onEditOrder)="onEdit(item)"
                     (onDeleteOrder)="onDelete(item, i)"
                     (onMarkCompleted)="onComplete($event, item.key)"></app-order-item>
+  </div>
+  <div class="col-md-12" *ngIf="orders && orders.length === 0">
+    <div class="jumbotron">
+      <h3>No orders yet for this month</h3>
+    </div>
   </div>
 </div>

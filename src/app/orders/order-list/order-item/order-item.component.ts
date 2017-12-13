@@ -33,7 +33,7 @@ export class OrderItemComponent implements OnInit, OnDestroy {
     private db: AngularFireDatabase,
     private service: OrderItemService
   ) {
-    this.order = {};
+    this.order = {completed: true};
   }
 
   ngOnInit() {
