@@ -26,6 +26,7 @@ import { PlacesService } from './shared/services/places.service';
 import { OrdersService } from './shared/services/orders.service';
 import { BudgetComponent } from './budget/budget.component';
 import { BudgetService } from './shared/services/budget.service';
+import { WebcamComponent } from './webcam/webcam.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BudgetService } from './shared/services/budget.service';
     OrderItemComponent,
     PeopleComponent,
     PlacesComponent,
-    BudgetComponent
+    BudgetComponent,
+    WebcamComponent
 ],
   imports: [
     BrowserModule,

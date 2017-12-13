@@ -13,4 +13,34 @@
 <body>
   <app-root></app-root>
 </body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111178810-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111178810-1');
+</script>
+<script>
+  var _komito = _komito || {
+    'trackTwitter': 0,    // Tracks Twitter events if widget is presented on page.
+    'trackFacebook': 0,   // Tracks Facebook events if widget is presented on page.
+    'trackLinkedIn': 0,   // Tracks LinkedIn events if plugin is presented on page.
+    'trackDownloads': 1,  // Tracks files download links.
+    'trackOutbound': 1,   // Tracks outbound links.
+    'trackForms': 0,      // Tracks forms submissions.
+    'trackUsers': 1,      // Tracks pageviews by users logged in to social networks.
+    'trackActions': 0,    // Tracks 'mailto', 'tel', 'sms' and 'skype' actions.
+    'trackPrint': 0,      // Tracks page print actions.
+    'trackMedia': 1,      // Tracks HTML5 video, audio, Vimeo and YouTube players events.
+    'trackScroll': 1,     // Tracks scroll depth.
+    'trackOrientation': 1,// Tracks orientation change on mobile devices.
+    'trackAdblock': 1,    // Tracks page views with blocked ads. (Experimental)
+    'debugMode': 0,       // Prints all requests to console.
+    'nonInteraction': ['form', 'print', 'scroll', 'video', 'orientation', 'adblock'] // List of non interaction events.
+  };
+</script>
+<script src="https://komito.net/komito.js" async></script>
 </html>
