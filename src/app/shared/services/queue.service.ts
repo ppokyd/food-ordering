@@ -35,8 +35,8 @@ export class QueueService {
   suggestDeliveryPerson() {
     return this.queue.map(val => {
       return val.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        .sort((a, b) => a.ordersAmount - b.ordersAmount)
-        .sort((a, b) => a.lastOrdered - b.lastOrdered);
+        .sort((a, b) => a.lastOrdered - b.lastOrdered)
+        .sort((a, b) => a.ordersAmount - b.ordersAmount);
     });
   }
 
