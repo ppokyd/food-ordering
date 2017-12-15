@@ -12,9 +12,15 @@ export class AuthGuardService {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot ) {
+    if (!this.appService.getCurrentUser()) {
+      window.location.reload();
+      return false;
+    }
+
     if (this.appService.isPbUser()) {
       return true;
     }
+
     this.router.navigate(['/orders']);
   }
 

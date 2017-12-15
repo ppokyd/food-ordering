@@ -7,14 +7,13 @@ import { AppService } from '../shared/services/app.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  isPbUser: boolean;
+  public isPbUser: boolean;
 
   constructor(
-    public appService: AppService
+    private appService: AppService
   ) { }
 
   ngOnInit() {
     this.isPbUser = this.appService.isPbUser();
   }
-
 }

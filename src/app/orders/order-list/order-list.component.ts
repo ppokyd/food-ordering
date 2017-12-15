@@ -46,6 +46,7 @@ export class OrderListComponent implements OnInit {
 
   addOrder() {
     delete this.order.key;
+    this.order.date = +new Date;
     this.ordersService.addOrder(this.order);
     this.order = { items: [], delivery: '', place: '', date: +new Date, sum: 0, key: '', completed: false };
   }

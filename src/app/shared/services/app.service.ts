@@ -21,8 +21,8 @@ export class AppService {
   }
 
   isPbUser() {
-    return this.user.email.endsWith('@playbuzz.com') ||
-      this.user.email.startsWith('opiskozub');
+    return (this.user.email.endsWith('@playbuzz.com') ||
+      this.user.email.startsWith('opiskozub'));
   }
 
   logout() {
