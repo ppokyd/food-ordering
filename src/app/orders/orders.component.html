@@ -1,18 +1,18 @@
 
 <div class="row" *ngIf="isPbUser">
-  <div class="col-2">
+  <div class="col-md-2">
     <app-orders-summary></app-orders-summary>
   </div>
-  <div class="col-8">
+  <div class="col-md-8">
     <app-order-list></app-order-list>
   </div>
-  <div class="col-2">
+  <div class="col-md-2">
     <app-orders-budget></app-orders-budget>
   </div>
 </div>
 
 <div class="row justify-content-center" [hidden]="isPbUser">
-  <div class="col-5 py-5 text-center">
+  <div class="col-md-5 py-5 text-center">
     <div class="alert alert-danger" role="alert">
       <h3>You are not logged in with PlayBuzz account!</h3>
     </div>

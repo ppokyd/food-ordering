@@ -14,21 +14,21 @@
         </select>
       </div>
       <div class="col-md-4 form-group">
-        <button class="btn btn-success"
+        <button class="btn btn-success col-md-4"
                 *ngIf="state === 'add'"
                 (click)="addOrder()"
                 [disabled]="!order.delivery || !order.place">Add Order</button>
 
-        <button class="btn btn-success"
+        <button class="btn btn-success col-md-4"
                 *ngIf="state === 'edit'"
                 (click)="updateOrder()"
                 [disabled]="!order.delivery || !order.place">Update Order</button>
       </div>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-md-3">
     <div class="form-row">
-      <div class="col-4 form-group">
+      <div class="col-md-4 form-group">
         <label class="col-form-label">Filter by:</label>
       </div>
       <div class="col form-group">
