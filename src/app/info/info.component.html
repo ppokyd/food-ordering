@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col-6 py-4">
+    <div class="row">
+      <div class="col-4" *ngFor="let info of infos | async;">
+        <div class="jumbotron">
+          <div class="form-row">
+            <h4>{{ info.label }}</h4>
+          </div>
+          <div class="form-row">
+            <label>{{ info.login }}</label>
+          </div>
+          <div class="form-row">
+            <label>{{ info.pass }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

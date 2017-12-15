@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AppService } from '../shared/services/app.service';
 
 @Component({
   selector: 'app-orders',
@@ -6,10 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+  isPbUser: boolean;
 
-  constructor() { }
+  constructor(
+    public appService: AppService
+  ) { }
 
   ngOnInit() {
+    this.isPbUser = this.appService.isPbUser();
   }
 
 }

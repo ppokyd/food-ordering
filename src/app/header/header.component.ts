@@ -5,7 +5,8 @@ import { AppService } from '../shared/services/app.service';
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
+  isPbUser: boolean;
   user: any;
 
   constructor(
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit() {
     this.user = this.appService.getCurrentUser();
+    this.isPbUser = this.appService.isPbUser();
   }
 
   logout() {

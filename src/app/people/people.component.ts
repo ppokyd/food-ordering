@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PeopleComponent implements OnInit {
   public name = '';
+  public email = '';
   public list: any[];
   public adminMode = false;
 
@@ -26,7 +27,9 @@ export class PeopleComponent implements OnInit {
   }
 
   addPerson() {
-    this.queueService.addPerson(this.name);
+    this.queueService.addPerson({
+      name: this.name, email: this.email
+    });
   }
 
 }

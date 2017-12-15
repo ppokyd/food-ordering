@@ -21,9 +21,13 @@
   <div class="row justify-content-center" *ngIf="adminMode">
     <div class="col-10">
       <div class="form-row">
-        <div class="col-md-8 form-group">
+        <div class="col-md-4 form-group">
           <label>Name</label>
           <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="name">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" placeholder="Enter email" [(ngModel)]="email">
         </div>
         <div class="col-md-4 form-group">
           <label>&nbsp;</label>

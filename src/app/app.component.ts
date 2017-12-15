@@ -9,8 +9,11 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public afAuth: AngularFireAuth) {
-  }
+
+  constructor(
+    public afAuth: AngularFireAuth
+  ) { }
+
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }

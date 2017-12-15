@@ -20,10 +20,10 @@ export class QueueService {
     });
   }
 
-  addPerson(name) {
-    this.queueRef.push({
-      name, ordersAmount: 0
-    });
+  addPerson(person) {
+    this.queueRef.push(Object.assign({
+      ordersAmount: 0
+    }, person));
   }
 
   updateLastDelivery(person) {

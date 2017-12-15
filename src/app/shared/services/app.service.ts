@@ -25,6 +25,11 @@ export class AppService {
     return this.admins.find(a => a === this.user.email) ? true : false;
   }
 
+  isPbUser() {
+    return this.user.email.endsWith('@playbuzz.com') ||
+      this.user.email.endsWith('opiskozub@gmail.com');
+  }
+
   logout() {
     this.afAuth.auth.signOut();
   }

@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
@@ -14,10 +18,6 @@ import { OrderItemComponent } from './orders/order-list/order-item/order-item.co
 import { OrdersSummaryComponent } from './orders/orders-summary/orders-summary.component';
 import { OrdersBudgetComponent } from './orders/orders-budget/orders-budget.component';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { QueueService } from './shared/services/queue.service';
 import { PeopleComponent } from './people/people.component';
@@ -27,6 +27,9 @@ import { OrdersService } from './shared/services/orders.service';
 import { BudgetComponent } from './budget/budget.component';
 import { BudgetService } from './shared/services/budget.service';
 import { WebcamComponent } from './webcam/webcam.component';
+import { InfoComponent } from './info/info.component';
+import { InfoService } from './shared/services/info.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { WebcamComponent } from './webcam/webcam.component';
     PeopleComponent,
     PlacesComponent,
     BudgetComponent,
-    WebcamComponent
+    WebcamComponent,
+    InfoComponent
 ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { WebcamComponent } from './webcam/webcam.component';
     AppService,
     PlacesService,
     OrdersService,
-    BudgetService
+    BudgetService,
+    InfoService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
