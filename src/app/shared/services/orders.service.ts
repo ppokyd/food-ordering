@@ -48,7 +48,7 @@ export class OrdersService {
   calcPrevSum(res) {
     let prevMonth = moment().get('month') - 1;
     if (prevMonth < 0) {
-      prevMonth = 12;
+      prevMonth = 11;
     }
     const prevRes = res.filter(i => moment(i.date).get('month') === prevMonth);
     return prevRes.reduce((s, a) => s + parseInt(a.sum, 10), 0);
